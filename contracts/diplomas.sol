@@ -6,42 +6,83 @@ import "./NTCert.sol";
 
 contract Diplomas is NTCert {
     
-     mapping(address => mapping(string => certificate)) public diplomas;
+     mapping(address => mapping(string => certificate)) private diplomas;
      
-     event certVoided(string  _certId, address _certAuth);
-     address owner;
+     modifier onlyOwner {
+         require(owner == msg.sender, "You're not my dad!");
+         _;
+     }
+     
+     address private owner;
      
      constructor(){
          owner = msg.sender;
      }
     
-    function voidCert(string memory _certId, string memory _reason) override public{
+    
+    function voidCert(string memory _certId) override public{
         require(diplomas[msg.sender][_certId].status == certStatus.ACTIVE);
-        certificate storage cert = diplomas[msg.sender][_certId];
-        cert.status = certStatus.VOID;
-        cert.voidMemo = _reason;
+        diplomas[msg.sender][_certId].status = certStatus.VOID;
         emit certVoided(_certId, msg.sender);
         
     }
-    function createCert(string memory _certId, uint32 _expiresOn) override public{
-        require(diplomas[msg.sender][_certId].status == certStatus.NONE);
+    function createCert(
+        string calldata _certId, 
+        uint32 _expiresOn,
+        string calldata _title,
+        string calldata _institution,
+        string calldata _beneficiary,     
+        string calldata _details,     
+        string calldata _pofHash
+    ) override public{
+    
+        require(diplomas[msg.sender][_certId].status == certStatus.NONE, "Diploma Id in use");
         
         diplomas[msg.sender][_certId] = certificate(
                 certStatus.ACTIVE, 
                 block.timestamp, 
                 0, 
-               (_expiresOn > 0 ? block.timestamp + _expiresOn : 0),
-                '', 
-                "Test",
-                "Jay Albo", 
-                "Professor X", 
-                ''
+                (_expiresOn > 0 ? block.timestamp + _expiresOn : 0),
+                _title, 
+                _institution,
+                _beneficiary, 
+                _details,
+                _pofHash
             );
+        emit certVoided(_certId, msg.sender);
     }
     
-    function getCert(string memory _certId, address _certAuth) public view returns (certStatus){
+    function getCert(string calldata _certId, address _certAuth) public override view returns (
+        uint createdOn, 
+        uint voidedOn, 
+        uint expiresOn, 
+        string memory title, 
+        string memory institution, 
+        string memory beneficiary, 
+        string memory details, 
+        string memory PoEhash){
+            
         require(diplomas[_certAuth][_certId].status != certStatus.NONE, "Diploma does not exists");
-        return diplomas[_certAuth][_certId].status;
+        
+        // Determine if diploma has a set expiration, if so, verifies if the diploma is not expired
+        if (diplomas[_certAuth][_certId].expiresOn > 0)
+        {
+            require(diplomas[_certAuth][_certId].expiresOn > block.timestamp, "Diploma has expired");
+        }
+        
+        certificate memory currentDiploma = diplomas[_certAuth][_certId];
+        
+        
+        return (
+            currentDiploma.createdOn, 
+            currentDiploma.voidedOn, 
+            currentDiploma.expiresOn, 
+            currentDiploma.title, 
+            currentDiploma.institution, 
+            currentDiploma.beneficiary, 
+            currentDiploma.details, 
+            currentDiploma.PoEhash
+        );
         
     }
     
@@ -52,17 +93,18 @@ contract Diplomas is NTCert {
        if (cert.expiresOn != 0 && cert.expiresOn < block.timestamp) return false;
        return true;
     }
- }
 
-/*
-        certStatus status;
-        uint256 createdOn;
-        uint256 voidedOn;
-        uint expiresOn;
-        string voidMemo;
-        string institution;
-        string beneficiary;
-        string signer;
-        string PoEhash;
+ 
+    function proofOfExistence(string calldata _certId, address _certAuth, string calldata _pofHash) view public returns(bool isValid){
+         require(diplomas[_certAuth][_certId].status == certStatus.ACTIVE);
+         require(bytes(diplomas[_certAuth][_certId].PoEhash).length > 0);
+         return keccak256(abi.encodePacked(diplomas[_certAuth][_certId].PoEhash)) == keccak256(abi.encodePacked(_pofHash));
+        
     }
-*/ 
+    
+    function destroyContract() public onlyOwner{
+        selfdestruct(msg.sender);
+    }
+ }
+ 
+ 
