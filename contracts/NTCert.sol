@@ -45,7 +45,7 @@ abstract contract NTCert{
         string calldata _beneficiary,   
         string calldata _details,   
         string calldata _pofHash
-    ) virtual public;
+    ) virtual public returns (bool created);
     
     
     /// @notice Validates a certificate

@@ -1,0 +1,2665 @@
+{
+  "contractName": "NTCert",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "_certId",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "_certAuth",
+          "type": "address"
+        }
+      ],
+      "name": "certCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "_certId",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "_certAuth",
+          "type": "address"
+        }
+      ],
+      "name": "certVoided",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_certId",
+          "type": "string"
+        }
+      ],
+      "name": "voidCert",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_certId",
+          "type": "string"
+        },
+        {
+          "internalType": "uint32",
+          "name": "_expiresOn",
+          "type": "uint32"
+        },
+        {
+          "internalType": "string",
+          "name": "_title",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_institution",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_beneficiary",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_details",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_pofHash",
+          "type": "string"
+        }
+      ],
+      "name": "createCert",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "created",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_certId",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "_certAuth",
+          "type": "address"
+        }
+      ],
+      "name": "certValid",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "isValid",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_certId",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "_certAuth",
+          "type": "address"
+        }
+      ],
+      "name": "getCert",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "createdOn",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "voidedOn",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "expiresOn",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "institution",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "beneficiary",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "details",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "PoEhash",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"_certId\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"_certAuth\",\"type\":\"address\"}],\"name\":\"certCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"_certId\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"_certAuth\",\"type\":\"address\"}],\"name\":\"certVoided\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_certId\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_certAuth\",\"type\":\"address\"}],\"name\":\"certValid\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"isValid\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_certId\",\"type\":\"string\"},{\"internalType\":\"uint32\",\"name\":\"_expiresOn\",\"type\":\"uint32\"},{\"internalType\":\"string\",\"name\":\"_title\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_institution\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_beneficiary\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_details\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_pofHash\",\"type\":\"string\"}],\"name\":\"createCert\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"created\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_certId\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_certAuth\",\"type\":\"address\"}],\"name\":\"getCert\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"createdOn\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"voidedOn\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"expiresOn\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"institution\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"beneficiary\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"details\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"PoEhash\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_certId\",\"type\":\"string\"}],\"name\":\"voidCert\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"certValid(string,address)\":{\"details\":\"Verifies if certificate is not voided, in case if being  active, it verifies if an expiration date was set, if so,  it verifies that the expiration date < current date\",\"params\":{\"_certAuth\":\"address if cert authority\",\"_certId\":\"id of the certificate\"},\"returns\":{\"isValid\":\"bool \"}},\"createCert(string,uint32,string,string,string,string,string)\":{\"details\":\"Throws if certId of `msg.sender` already exists\",\"params\":{\"_beneficiary\":\"string\",\"_certId\":\"id of the certificate string\",\"_expiresOn\":\"lenght of certificate (in seconds) uint\",\"_institution\":\"string\",\"_pofHash\":\"string\"}},\"getCert(string,address)\":{\"details\":\"Verifies that the certificate status != NONE, also verifies if the same has an expiration date, in that case it verifies that the expiration date < current date\",\"params\":{\"_certAuth\":\"address if cert authority\",\"_certId\":\"id of the certificate\"},\"returns\":{\"PoEhash\":\"string\",\"beneficiary\":\"string\",\"createdOn\":\"uint\",\"details\":\"string\",\"expiresOn\":\"uint\",\"institution\":\"string\",\"title\":\"uint\",\"voidedOn\":\"uint\"}},\"voidCert(string)\":{\"details\":\"Throws if `msg.sender` is the not current owner\",\"params\":{\"_certId\":\"id of the certificate\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"certValid(string,address)\":{\"notice\":\"Validates a certificate\"},\"createCert(string,uint32,string,string,string,string,string)\":{\"notice\":\"Creates a new certificate (token)\"},\"getCert(string,address)\":{\"notice\":\"Returns a certificate\"},\"voidCert(string)\":{\"notice\":\"Void an existing token \"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/jay/Desktop/dev/blockchain/truffle_ui/contracts/NTCert.sol\":\"NTCert\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/jay/Desktop/dev/blockchain/truffle_ui/contracts/NTCert.sol\":{\"keccak256\":\"0x5bc946bb91d3ae030bfb71d47cedfea5decca35a5a0e0f6b8ab982d55f8a6126\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://9c1315eca69a05aae995dd23bd794557a5286c8ea0ccbea522037ca7ff77669b\",\"dweb:/ipfs/QmdrgjpfiMV1TPSGg9CVoYaWqt8KeDjgHoMivayYVAAT75\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: GPL-3.0\n\npragma solidity ^0.7.0;\n\nabstract contract NTCert{\n    \n    enum certStatus { NONE, ACTIVE, VOID }\n    \n    struct certificate {\n        certStatus status;\n        uint256 createdOn;\n        uint256 voidedOn;\n        uint expiresOn;\n        string title;\n        string institution;\n        string beneficiary;\n        string details;\n        string PoEhash;\n    }\n    \n    //Events\n     \n     event certCreated(string  _certId, address _certAuth);\n     event certVoided(string  _certId, address _certAuth);\n    \n    \n    /// @notice Void an existing token \n    /// @dev Throws if `msg.sender` is the not current owner\n    /// @param _certId id of the certificate\n    function voidCert(string memory _certId) virtual public;\n    \n    /// @notice Creates a new certificate (token)\n    /// @dev Throws if certId of `msg.sender` already exists\n    /// @param _certId id of the certificate string\n    /// @param _expiresOn lenght of certificate (in seconds) uint\n    /// @param _institution string\n    /// @param _beneficiary string\n    /// @param _pofHash string\n    \n    function createCert(\n        string calldata _certId,\n        uint32 _expiresOn,\n        string calldata _title,\n        string calldata _institution,\n        string calldata _beneficiary,   \n        string calldata _details,   \n        string calldata _pofHash\n    ) virtual public returns (bool created);\n    \n    \n    /// @notice Validates a certificate\n    /// @dev Verifies if certificate is not voided, in case if being \n    /// active, it verifies if an expiration date was set, if so, \n    /// it verifies that the expiration date < current date\n    /// @param _certId id of the certificate\n    /// @param _certAuth address if cert authority\n    /// @return isValid bool \n    function certValid(string memory _certId, address _certAuth) virtual public returns(bool isValid);\n    \n    /// @notice Returns a certificate\n    /// @dev Verifies that the certificate status != NONE, also\n    /// verifies if the same has an expiration date, in that case\n    /// it verifies that the expiration date < current date\n    /// @param _certId id of the certificate\n    /// @param _certAuth address if cert authority\n    /// @return createdOn uint\n    /// @return voidedOn uint\n    /// @return expiresOn uint\n    /// @return title uint\n    /// @return institution string\n    /// @return beneficiary string\n    /// @return details string\n    /// @return PoEhash string\n    function getCert(string calldata _certId, address _certAuth) virtual public view returns (\n        uint createdOn, \n        uint voidedOn, \n        uint expiresOn, \n        string memory title, \n        string memory institution, \n        string memory beneficiary, \n        string memory details,   \n        string memory PoEhash\n    );\n            \n\n}",
+  "sourcePath": "/Users/jay/Desktop/dev/blockchain/truffle_ui/contracts/NTCert.sol",
+  "ast": {
+    "absolutePath": "/Users/jay/Desktop/dev/blockchain/truffle_ui/contracts/NTCert.sol",
+    "exportedSymbols": {
+      "NTCert": [
+        477
+      ]
+    },
+    "id": 478,
+    "license": "GPL-3.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 381,
+        "literals": [
+          "solidity",
+          "^",
+          "0.7",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "37:23:2"
+      },
+      {
+        "abstract": true,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": false,
+        "id": 477,
+        "linearizedBaseContracts": [
+          477
+        ],
+        "name": "NTCert",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "NTCert.certStatus",
+            "id": 385,
+            "members": [
+              {
+                "id": 382,
+                "name": "NONE",
+                "nodeType": "EnumValue",
+                "src": "115:4:2"
+              },
+              {
+                "id": 383,
+                "name": "ACTIVE",
+                "nodeType": "EnumValue",
+                "src": "121:6:2"
+              },
+              {
+                "id": 384,
+                "name": "VOID",
+                "nodeType": "EnumValue",
+                "src": "129:4:2"
+              }
+            ],
+            "name": "certStatus",
+            "nodeType": "EnumDefinition",
+            "src": "97:38:2"
+          },
+          {
+            "canonicalName": "NTCert.certificate",
+            "id": 404,
+            "members": [
+              {
+                "constant": false,
+                "id": 387,
+                "mutability": "mutable",
+                "name": "status",
+                "nodeType": "VariableDeclaration",
+                "scope": 404,
+                "src": "174:17:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_enum$_certStatus_$385",
+                  "typeString": "enum NTCert.certStatus"
+                },
+                "typeName": {
+                  "id": 386,
+                  "name": "certStatus",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 385,
+                  "src": "174:10:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_certStatus_$385",
+                    "typeString": "enum NTCert.certStatus"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 389,
+                "mutability": "mutable",
+                "name": "createdOn",
+                "nodeType": "VariableDeclaration",
+                "scope": 404,
+                "src": "201:17:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 388,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "201:7:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 391,
+                "mutability": "mutable",
+                "name": "voidedOn",
+                "nodeType": "VariableDeclaration",
+                "scope": 404,
+                "src": "228:16:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 390,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "228:7:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 393,
+                "mutability": "mutable",
+                "name": "expiresOn",
+                "nodeType": "VariableDeclaration",
+                "scope": 404,
+                "src": "254:14:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 392,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "254:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 395,
+                "mutability": "mutable",
+                "name": "title",
+                "nodeType": "VariableDeclaration",
+                "scope": 404,
+                "src": "278:12:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 394,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "278:6:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 397,
+                "mutability": "mutable",
+                "name": "institution",
+                "nodeType": "VariableDeclaration",
+                "scope": 404,
+                "src": "300:18:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 396,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "300:6:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 399,
+                "mutability": "mutable",
+                "name": "beneficiary",
+                "nodeType": "VariableDeclaration",
+                "scope": 404,
+                "src": "328:18:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 398,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "328:6:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 401,
+                "mutability": "mutable",
+                "name": "details",
+                "nodeType": "VariableDeclaration",
+                "scope": 404,
+                "src": "356:14:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 400,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "356:6:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 403,
+                "mutability": "mutable",
+                "name": "PoEhash",
+                "nodeType": "VariableDeclaration",
+                "scope": 404,
+                "src": "380:14:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 402,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "380:6:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "certificate",
+            "nodeType": "StructDefinition",
+            "scope": 477,
+            "src": "145:256:2",
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "id": 410,
+            "name": "certCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 409,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 406,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "_certId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 410,
+                  "src": "449:15:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 405,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "449:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 408,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "_certAuth",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 410,
+                  "src": "466:17:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 407,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "466:7:2",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "448:36:2"
+            },
+            "src": "431:54:2"
+          },
+          {
+            "anonymous": false,
+            "id": 416,
+            "name": "certVoided",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 415,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 412,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "_certId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 416,
+                  "src": "508:15:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 411,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "508:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 414,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "_certAuth",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 416,
+                  "src": "525:17:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 413,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "525:7:2",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "507:36:2"
+            },
+            "src": "491:53:2"
+          },
+          {
+            "documentation": {
+              "id": 417,
+              "nodeType": "StructuredDocumentation",
+              "src": "559:141:2",
+              "text": "@notice Void an existing token \n @dev Throws if `msg.sender` is the not current owner\n @param _certId id of the certificate"
+            },
+            "functionSelector": "c98a8cb9",
+            "id": 422,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "voidCert",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 420,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 419,
+                  "mutability": "mutable",
+                  "name": "_certId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 422,
+                  "src": "723:21:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 418,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "723:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "722:23:2"
+            },
+            "returnParameters": {
+              "id": 421,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "760:0:2"
+            },
+            "scope": 477,
+            "src": "705:56:2",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "documentation": {
+              "id": 423,
+              "nodeType": "StructuredDocumentation",
+              "src": "771:325:2",
+              "text": "@notice Creates a new certificate (token)\n @dev Throws if certId of `msg.sender` already exists\n @param _certId id of the certificate string\n @param _expiresOn lenght of certificate (in seconds) uint\n @param _institution string\n @param _beneficiary string\n @param _pofHash string"
+            },
+            "functionSelector": "e7036d63",
+            "id": 442,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "createCert",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 438,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 425,
+                  "mutability": "mutable",
+                  "name": "_certId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 442,
+                  "src": "1135:23:2",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 424,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1135:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 427,
+                  "mutability": "mutable",
+                  "name": "_expiresOn",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 442,
+                  "src": "1168:17:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  },
+                  "typeName": {
+                    "id": 426,
+                    "name": "uint32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1168:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint32",
+                      "typeString": "uint32"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 429,
+                  "mutability": "mutable",
+                  "name": "_title",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 442,
+                  "src": "1195:22:2",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 428,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1195:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 431,
+                  "mutability": "mutable",
+                  "name": "_institution",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 442,
+                  "src": "1227:28:2",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 430,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1227:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 433,
+                  "mutability": "mutable",
+                  "name": "_beneficiary",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 442,
+                  "src": "1265:28:2",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 432,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1265:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 435,
+                  "mutability": "mutable",
+                  "name": "_details",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 442,
+                  "src": "1306:24:2",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 434,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1306:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 437,
+                  "mutability": "mutable",
+                  "name": "_pofHash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 442,
+                  "src": "1343:24:2",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 436,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1343:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1125:248:2"
+            },
+            "returnParameters": {
+              "id": 441,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 440,
+                  "mutability": "mutable",
+                  "name": "created",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 442,
+                  "src": "1398:12:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 439,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1398:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1397:14:2"
+            },
+            "scope": 477,
+            "src": "1106:306:2",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "documentation": {
+              "id": 443,
+              "nodeType": "StructuredDocumentation",
+              "src": "1427:358:2",
+              "text": "@notice Validates a certificate\n @dev Verifies if certificate is not voided, in case if being \n active, it verifies if an expiration date was set, if so, \n it verifies that the expiration date < current date\n @param _certId id of the certificate\n @param _certAuth address if cert authority\n @return isValid bool "
+            },
+            "functionSelector": "ddc271f1",
+            "id": 452,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "certValid",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 448,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 445,
+                  "mutability": "mutable",
+                  "name": "_certId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 452,
+                  "src": "1809:21:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 444,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1809:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 447,
+                  "mutability": "mutable",
+                  "name": "_certAuth",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 452,
+                  "src": "1832:17:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 446,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1832:7:2",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1808:42:2"
+            },
+            "returnParameters": {
+              "id": 451,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 450,
+                  "mutability": "mutable",
+                  "name": "isValid",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 452,
+                  "src": "1874:12:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 449,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1874:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1873:14:2"
+            },
+            "scope": 477,
+            "src": "1790:98:2",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "documentation": {
+              "id": 453,
+              "nodeType": "StructuredDocumentation",
+              "src": "1898:570:2",
+              "text": "@notice Returns a certificate\n @dev Verifies that the certificate status != NONE, also\n verifies if the same has an expiration date, in that case\n it verifies that the expiration date < current date\n @param _certId id of the certificate\n @param _certAuth address if cert authority\n @return createdOn uint\n @return voidedOn uint\n @return expiresOn uint\n @return title uint\n @return institution string\n @return beneficiary string\n @return details string\n @return PoEhash string"
+            },
+            "functionSelector": "9194e781",
+            "id": 476,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getCert",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 458,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 455,
+                  "mutability": "mutable",
+                  "name": "_certId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 476,
+                  "src": "2490:23:2",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 454,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2490:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 457,
+                  "mutability": "mutable",
+                  "name": "_certAuth",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 476,
+                  "src": "2515:17:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 456,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2515:7:2",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2489:44:2"
+            },
+            "returnParameters": {
+              "id": 475,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 460,
+                  "mutability": "mutable",
+                  "name": "createdOn",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 476,
+                  "src": "2572:14:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 459,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2572:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 462,
+                  "mutability": "mutable",
+                  "name": "voidedOn",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 476,
+                  "src": "2597:13:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 461,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2597:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 464,
+                  "mutability": "mutable",
+                  "name": "expiresOn",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 476,
+                  "src": "2621:14:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 463,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2621:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 466,
+                  "mutability": "mutable",
+                  "name": "title",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 476,
+                  "src": "2646:19:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 465,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2646:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 468,
+                  "mutability": "mutable",
+                  "name": "institution",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 476,
+                  "src": "2676:25:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 467,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2676:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 470,
+                  "mutability": "mutable",
+                  "name": "beneficiary",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 476,
+                  "src": "2712:25:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 469,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2712:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 472,
+                  "mutability": "mutable",
+                  "name": "details",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 476,
+                  "src": "2748:21:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 471,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2748:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 474,
+                  "mutability": "mutable",
+                  "name": "PoEhash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 476,
+                  "src": "2782:21:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 473,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2782:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2562:247:2"
+            },
+            "scope": 477,
+            "src": "2473:337:2",
+            "stateMutability": "view",
+            "virtual": true,
+            "visibility": "public"
+          }
+        ],
+        "scope": 478,
+        "src": "62:2764:2"
+      }
+    ],
+    "src": "37:2789:2"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/Users/jay/Desktop/dev/blockchain/truffle_ui/contracts/NTCert.sol",
+      "exportedSymbols": {
+        "NTCert": [
+          477
+        ]
+      },
+      "license": "GPL-3.0"
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.7",
+            ".0"
+          ]
+        },
+        "id": 381,
+        "name": "PragmaDirective",
+        "src": "37:23:2"
+      },
+      {
+        "attributes": {
+          "abstract": true,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            477
+          ],
+          "name": "NTCert",
+          "scope": 478
+        },
+        "children": [
+          {
+            "attributes": {
+              "canonicalName": "NTCert.certStatus",
+              "name": "certStatus"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "NONE"
+                },
+                "id": 382,
+                "name": "EnumValue",
+                "src": "115:4:2"
+              },
+              {
+                "attributes": {
+                  "name": "ACTIVE"
+                },
+                "id": 383,
+                "name": "EnumValue",
+                "src": "121:6:2"
+              },
+              {
+                "attributes": {
+                  "name": "VOID"
+                },
+                "id": 384,
+                "name": "EnumValue",
+                "src": "129:4:2"
+              }
+            ],
+            "id": 385,
+            "name": "EnumDefinition",
+            "src": "97:38:2"
+          },
+          {
+            "attributes": {
+              "canonicalName": "NTCert.certificate",
+              "name": "certificate",
+              "scope": 477,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "status",
+                  "scope": 404,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "enum NTCert.certStatus",
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "certStatus",
+                      "referencedDeclaration": 385,
+                      "type": "enum NTCert.certStatus"
+                    },
+                    "id": 386,
+                    "name": "UserDefinedTypeName",
+                    "src": "174:10:2"
+                  }
+                ],
+                "id": 387,
+                "name": "VariableDeclaration",
+                "src": "174:17:2"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "createdOn",
+                  "scope": 404,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 388,
+                    "name": "ElementaryTypeName",
+                    "src": "201:7:2"
+                  }
+                ],
+                "id": 389,
+                "name": "VariableDeclaration",
+                "src": "201:17:2"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "voidedOn",
+                  "scope": 404,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 390,
+                    "name": "ElementaryTypeName",
+                    "src": "228:7:2"
+                  }
+                ],
+                "id": 391,
+                "name": "VariableDeclaration",
+                "src": "228:16:2"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "expiresOn",
+                  "scope": 404,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint",
+                      "type": "uint256"
+                    },
+                    "id": 392,
+                    "name": "ElementaryTypeName",
+                    "src": "254:4:2"
+                  }
+                ],
+                "id": 393,
+                "name": "VariableDeclaration",
+                "src": "254:14:2"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "title",
+                  "scope": 404,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string",
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string"
+                    },
+                    "id": 394,
+                    "name": "ElementaryTypeName",
+                    "src": "278:6:2"
+                  }
+                ],
+                "id": 395,
+                "name": "VariableDeclaration",
+                "src": "278:12:2"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "institution",
+                  "scope": 404,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string",
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string"
+                    },
+                    "id": 396,
+                    "name": "ElementaryTypeName",
+                    "src": "300:6:2"
+                  }
+                ],
+                "id": 397,
+                "name": "VariableDeclaration",
+                "src": "300:18:2"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "beneficiary",
+                  "scope": 404,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string",
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string"
+                    },
+                    "id": 398,
+                    "name": "ElementaryTypeName",
+                    "src": "328:6:2"
+                  }
+                ],
+                "id": 399,
+                "name": "VariableDeclaration",
+                "src": "328:18:2"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "details",
+                  "scope": 404,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string",
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string"
+                    },
+                    "id": 400,
+                    "name": "ElementaryTypeName",
+                    "src": "356:6:2"
+                  }
+                ],
+                "id": 401,
+                "name": "VariableDeclaration",
+                "src": "356:14:2"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "PoEhash",
+                  "scope": 404,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string",
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string"
+                    },
+                    "id": 402,
+                    "name": "ElementaryTypeName",
+                    "src": "380:6:2"
+                  }
+                ],
+                "id": 403,
+                "name": "VariableDeclaration",
+                "src": "380:14:2"
+              }
+            ],
+            "id": 404,
+            "name": "StructDefinition",
+            "src": "145:256:2"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "name": "certCreated"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "_certId",
+                      "scope": 410,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "string",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 405,
+                        "name": "ElementaryTypeName",
+                        "src": "449:6:2"
+                      }
+                    ],
+                    "id": 406,
+                    "name": "VariableDeclaration",
+                    "src": "449:15:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "_certAuth",
+                      "scope": 410,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 407,
+                        "name": "ElementaryTypeName",
+                        "src": "466:7:2"
+                      }
+                    ],
+                    "id": 408,
+                    "name": "VariableDeclaration",
+                    "src": "466:17:2"
+                  }
+                ],
+                "id": 409,
+                "name": "ParameterList",
+                "src": "448:36:2"
+              }
+            ],
+            "id": 410,
+            "name": "EventDefinition",
+            "src": "431:54:2"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "name": "certVoided"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "_certId",
+                      "scope": 416,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "string",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 411,
+                        "name": "ElementaryTypeName",
+                        "src": "508:6:2"
+                      }
+                    ],
+                    "id": 412,
+                    "name": "VariableDeclaration",
+                    "src": "508:15:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "_certAuth",
+                      "scope": 416,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 413,
+                        "name": "ElementaryTypeName",
+                        "src": "525:7:2"
+                      }
+                    ],
+                    "id": 414,
+                    "name": "VariableDeclaration",
+                    "src": "525:17:2"
+                  }
+                ],
+                "id": 415,
+                "name": "ParameterList",
+                "src": "507:36:2"
+              }
+            ],
+            "id": 416,
+            "name": "EventDefinition",
+            "src": "491:53:2"
+          },
+          {
+            "attributes": {
+              "functionSelector": "c98a8cb9",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "voidCert",
+              "scope": 477,
+              "stateMutability": "nonpayable",
+              "virtual": true,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice Void an existing token \n @dev Throws if `msg.sender` is the not current owner\n @param _certId id of the certificate"
+                },
+                "id": 417,
+                "name": "StructuredDocumentation",
+                "src": "559:141:2"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_certId",
+                      "scope": 422,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 418,
+                        "name": "ElementaryTypeName",
+                        "src": "723:6:2"
+                      }
+                    ],
+                    "id": 419,
+                    "name": "VariableDeclaration",
+                    "src": "723:21:2"
+                  }
+                ],
+                "id": 420,
+                "name": "ParameterList",
+                "src": "722:23:2"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 421,
+                "name": "ParameterList",
+                "src": "760:0:2"
+              }
+            ],
+            "id": 422,
+            "name": "FunctionDefinition",
+            "src": "705:56:2"
+          },
+          {
+            "attributes": {
+              "functionSelector": "e7036d63",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "createCert",
+              "scope": 477,
+              "stateMutability": "nonpayable",
+              "virtual": true,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice Creates a new certificate (token)\n @dev Throws if certId of `msg.sender` already exists\n @param _certId id of the certificate string\n @param _expiresOn lenght of certificate (in seconds) uint\n @param _institution string\n @param _beneficiary string\n @param _pofHash string"
+                },
+                "id": 423,
+                "name": "StructuredDocumentation",
+                "src": "771:325:2"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_certId",
+                      "scope": 442,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "string",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 424,
+                        "name": "ElementaryTypeName",
+                        "src": "1135:6:2"
+                      }
+                    ],
+                    "id": 425,
+                    "name": "VariableDeclaration",
+                    "src": "1135:23:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_expiresOn",
+                      "scope": 442,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint32",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint32",
+                          "type": "uint32"
+                        },
+                        "id": 426,
+                        "name": "ElementaryTypeName",
+                        "src": "1168:6:2"
+                      }
+                    ],
+                    "id": 427,
+                    "name": "VariableDeclaration",
+                    "src": "1168:17:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_title",
+                      "scope": 442,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "string",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 428,
+                        "name": "ElementaryTypeName",
+                        "src": "1195:6:2"
+                      }
+                    ],
+                    "id": 429,
+                    "name": "VariableDeclaration",
+                    "src": "1195:22:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_institution",
+                      "scope": 442,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "string",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 430,
+                        "name": "ElementaryTypeName",
+                        "src": "1227:6:2"
+                      }
+                    ],
+                    "id": 431,
+                    "name": "VariableDeclaration",
+                    "src": "1227:28:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_beneficiary",
+                      "scope": 442,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "string",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 432,
+                        "name": "ElementaryTypeName",
+                        "src": "1265:6:2"
+                      }
+                    ],
+                    "id": 433,
+                    "name": "VariableDeclaration",
+                    "src": "1265:28:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_details",
+                      "scope": 442,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "string",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 434,
+                        "name": "ElementaryTypeName",
+                        "src": "1306:6:2"
+                      }
+                    ],
+                    "id": 435,
+                    "name": "VariableDeclaration",
+                    "src": "1306:24:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_pofHash",
+                      "scope": 442,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "string",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 436,
+                        "name": "ElementaryTypeName",
+                        "src": "1343:6:2"
+                      }
+                    ],
+                    "id": 437,
+                    "name": "VariableDeclaration",
+                    "src": "1343:24:2"
+                  }
+                ],
+                "id": 438,
+                "name": "ParameterList",
+                "src": "1125:248:2"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "created",
+                      "scope": 442,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 439,
+                        "name": "ElementaryTypeName",
+                        "src": "1398:4:2"
+                      }
+                    ],
+                    "id": 440,
+                    "name": "VariableDeclaration",
+                    "src": "1398:12:2"
+                  }
+                ],
+                "id": 441,
+                "name": "ParameterList",
+                "src": "1397:14:2"
+              }
+            ],
+            "id": 442,
+            "name": "FunctionDefinition",
+            "src": "1106:306:2"
+          },
+          {
+            "attributes": {
+              "functionSelector": "ddc271f1",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "certValid",
+              "scope": 477,
+              "stateMutability": "nonpayable",
+              "virtual": true,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice Validates a certificate\n @dev Verifies if certificate is not voided, in case if being \n active, it verifies if an expiration date was set, if so, \n it verifies that the expiration date < current date\n @param _certId id of the certificate\n @param _certAuth address if cert authority\n @return isValid bool "
+                },
+                "id": 443,
+                "name": "StructuredDocumentation",
+                "src": "1427:358:2"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_certId",
+                      "scope": 452,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 444,
+                        "name": "ElementaryTypeName",
+                        "src": "1809:6:2"
+                      }
+                    ],
+                    "id": 445,
+                    "name": "VariableDeclaration",
+                    "src": "1809:21:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_certAuth",
+                      "scope": 452,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 446,
+                        "name": "ElementaryTypeName",
+                        "src": "1832:7:2"
+                      }
+                    ],
+                    "id": 447,
+                    "name": "VariableDeclaration",
+                    "src": "1832:17:2"
+                  }
+                ],
+                "id": 448,
+                "name": "ParameterList",
+                "src": "1808:42:2"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "isValid",
+                      "scope": 452,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 449,
+                        "name": "ElementaryTypeName",
+                        "src": "1874:4:2"
+                      }
+                    ],
+                    "id": 450,
+                    "name": "VariableDeclaration",
+                    "src": "1874:12:2"
+                  }
+                ],
+                "id": 451,
+                "name": "ParameterList",
+                "src": "1873:14:2"
+              }
+            ],
+            "id": 452,
+            "name": "FunctionDefinition",
+            "src": "1790:98:2"
+          },
+          {
+            "attributes": {
+              "functionSelector": "9194e781",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getCert",
+              "scope": 477,
+              "stateMutability": "view",
+              "virtual": true,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice Returns a certificate\n @dev Verifies that the certificate status != NONE, also\n verifies if the same has an expiration date, in that case\n it verifies that the expiration date < current date\n @param _certId id of the certificate\n @param _certAuth address if cert authority\n @return createdOn uint\n @return voidedOn uint\n @return expiresOn uint\n @return title uint\n @return institution string\n @return beneficiary string\n @return details string\n @return PoEhash string"
+                },
+                "id": 453,
+                "name": "StructuredDocumentation",
+                "src": "1898:570:2"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_certId",
+                      "scope": 476,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "string",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 454,
+                        "name": "ElementaryTypeName",
+                        "src": "2490:6:2"
+                      }
+                    ],
+                    "id": 455,
+                    "name": "VariableDeclaration",
+                    "src": "2490:23:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_certAuth",
+                      "scope": 476,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 456,
+                        "name": "ElementaryTypeName",
+                        "src": "2515:7:2"
+                      }
+                    ],
+                    "id": 457,
+                    "name": "VariableDeclaration",
+                    "src": "2515:17:2"
+                  }
+                ],
+                "id": 458,
+                "name": "ParameterList",
+                "src": "2489:44:2"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "createdOn",
+                      "scope": 476,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 459,
+                        "name": "ElementaryTypeName",
+                        "src": "2572:4:2"
+                      }
+                    ],
+                    "id": 460,
+                    "name": "VariableDeclaration",
+                    "src": "2572:14:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "voidedOn",
+                      "scope": 476,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 461,
+                        "name": "ElementaryTypeName",
+                        "src": "2597:4:2"
+                      }
+                    ],
+                    "id": 462,
+                    "name": "VariableDeclaration",
+                    "src": "2597:13:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "expiresOn",
+                      "scope": 476,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 463,
+                        "name": "ElementaryTypeName",
+                        "src": "2621:4:2"
+                      }
+                    ],
+                    "id": 464,
+                    "name": "VariableDeclaration",
+                    "src": "2621:14:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "title",
+                      "scope": 476,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 465,
+                        "name": "ElementaryTypeName",
+                        "src": "2646:6:2"
+                      }
+                    ],
+                    "id": 466,
+                    "name": "VariableDeclaration",
+                    "src": "2646:19:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "institution",
+                      "scope": 476,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 467,
+                        "name": "ElementaryTypeName",
+                        "src": "2676:6:2"
+                      }
+                    ],
+                    "id": 468,
+                    "name": "VariableDeclaration",
+                    "src": "2676:25:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "beneficiary",
+                      "scope": 476,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 469,
+                        "name": "ElementaryTypeName",
+                        "src": "2712:6:2"
+                      }
+                    ],
+                    "id": 470,
+                    "name": "VariableDeclaration",
+                    "src": "2712:25:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "details",
+                      "scope": 476,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 471,
+                        "name": "ElementaryTypeName",
+                        "src": "2748:6:2"
+                      }
+                    ],
+                    "id": 472,
+                    "name": "VariableDeclaration",
+                    "src": "2748:21:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "PoEhash",
+                      "scope": 476,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 473,
+                        "name": "ElementaryTypeName",
+                        "src": "2782:6:2"
+                      }
+                    ],
+                    "id": 474,
+                    "name": "VariableDeclaration",
+                    "src": "2782:21:2"
+                  }
+                ],
+                "id": 475,
+                "name": "ParameterList",
+                "src": "2562:247:2"
+              }
+            ],
+            "id": 476,
+            "name": "FunctionDefinition",
+            "src": "2473:337:2"
+          }
+        ],
+        "id": 477,
+        "name": "ContractDefinition",
+        "src": "62:2764:2"
+      }
+    ],
+    "id": 478,
+    "name": "SourceUnit",
+    "src": "37:2789:2"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.7.6+commit.7338295f.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-04-07T05:39:56.089Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "certValid(string,address)": {
+        "details": "Verifies if certificate is not voided, in case if being  active, it verifies if an expiration date was set, if so,  it verifies that the expiration date < current date",
+        "params": {
+          "_certAuth": "address if cert authority",
+          "_certId": "id of the certificate"
+        },
+        "returns": {
+          "isValid": "bool "
+        }
+      },
+      "createCert(string,uint32,string,string,string,string,string)": {
+        "details": "Throws if certId of `msg.sender` already exists",
+        "params": {
+          "_beneficiary": "string",
+          "_certId": "id of the certificate string",
+          "_expiresOn": "lenght of certificate (in seconds) uint",
+          "_institution": "string",
+          "_pofHash": "string"
+        }
+      },
+      "getCert(string,address)": {
+        "details": "Verifies that the certificate status != NONE, also verifies if the same has an expiration date, in that case it verifies that the expiration date < current date",
+        "params": {
+          "_certAuth": "address if cert authority",
+          "_certId": "id of the certificate"
+        },
+        "returns": {
+          "PoEhash": "string",
+          "beneficiary": "string",
+          "createdOn": "uint",
+          "details": "string",
+          "expiresOn": "uint",
+          "institution": "string",
+          "title": "uint",
+          "voidedOn": "uint"
+        }
+      },
+      "voidCert(string)": {
+        "details": "Throws if `msg.sender` is the not current owner",
+        "params": {
+          "_certId": "id of the certificate"
+        }
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "certValid(string,address)": {
+        "notice": "Validates a certificate"
+      },
+      "createCert(string,uint32,string,string,string,string,string)": {
+        "notice": "Creates a new certificate (token)"
+      },
+      "getCert(string,address)": {
+        "notice": "Returns a certificate"
+      },
+      "voidCert(string)": {
+        "notice": "Void an existing token "
+      }
+    },
+    "version": 1
+  }
+}

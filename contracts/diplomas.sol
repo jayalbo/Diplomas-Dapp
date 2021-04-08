@@ -34,7 +34,7 @@ contract Diplomas is NTCert {
         string calldata _beneficiary,     
         string calldata _details,     
         string calldata _pofHash
-    ) override public{
+    ) override public returns (bool created){
     
         require(diplomas[msg.sender][_certId].status == certStatus.NONE, "Diploma Id in use");
         
@@ -50,6 +50,7 @@ contract Diplomas is NTCert {
                 _pofHash
             );
         emit certVoided(_certId, msg.sender);
+        return true;
     }
     
     function getCert(string calldata _certId, address _certAuth) public override view returns (
