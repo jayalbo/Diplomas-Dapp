@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  NavLink,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Diplomas from "./contracts/Diplomas.json";
 import getWeb3 from "./getWeb3";
 import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
@@ -17,15 +11,10 @@ import Invalidate from "./components/Invalidate";
 import POF from "./components/POF";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faEthereum } from "@fortawesome/free-brands-svg-icons";
-import {
-  faCheckSquare,
-  faCoffee,
-  faGraduationCap,
-} from "@fortawesome/free-solid-svg-icons";
+import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
 
 const App = () => {
-  const [diploma, setDiploma] = useState();
-  const [web3, setWeb3] = useState();
+  //const [web3, setWeb3] = useState();
   const [accounts, setAccounts] = useState();
   const [contract, setContract] = useState();
   const [depNetwork, setDepNetwork] = useState();
@@ -52,7 +41,7 @@ const App = () => {
         // Set web3, accounts, and contract to the state, and then proceed with an
         // example of interacting with the contract's methods.
 
-        setWeb3(web3);
+        // setWeb3(web3);
         setAccounts(accounts);
         setContract(instance);
         setDepNetwork(networkType);

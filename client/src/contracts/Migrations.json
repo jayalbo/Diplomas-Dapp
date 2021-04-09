@@ -48,18 +48,18 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"last_completed_migration\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"completed\",\"type\":\"uint256\"}],\"name\":\"setCompleted\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/jay/Desktop/dev/blockchain/truffle_ui/contracts/Migrations.sol\":\"Migrations\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/jay/Desktop/dev/blockchain/truffle_ui/contracts/Migrations.sol\":{\"keccak256\":\"0x439dc4dacccd932f22167c6999e1cf1054eb7a2ff986fba21245590a5c0813e1\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3d420d60c0537d3957192c67d0759c943c97f62afedbdf35861292c89ce23a8c\",\"dweb:/ipfs/QmUQYzkfrKjq5ZDoFCsdvx3BjShAx53HCYkocoutCLrzZ9\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b50336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550610185806100606000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c8063445df0ac146100465780638da5cb5b14610064578063fdacd57614610098575b600080fd5b61004e6100c6565b6040518082815260200191505060405180910390f35b61006c6100cc565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6100c4600480360360208110156100ae57600080fd5b81019080803590602001909291905050506100f0565b005b60015481565b60008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141561014c57806001819055505b5056fea2646970667358221220ac25c4c94164685bed6eeed3e56d2d101cfb841eba4be0839beaeeb1d2fe4def64736f6c63430007060033",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c8063445df0ac146100465780638da5cb5b14610064578063fdacd57614610098575b600080fd5b61004e6100c6565b6040518082815260200191505060405180910390f35b61006c6100cc565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6100c4600480360360208110156100ae57600080fd5b81019080803590602001909291905050506100f0565b005b60015481565b60008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141561014c57806001819055505b5056fea2646970667358221220ac25c4c94164685bed6eeed3e56d2d101cfb841eba4be0839beaeeb1d2fe4def64736f6c63430007060033",
+  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"last_completed_migration\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"completed\",\"type\":\"uint256\"}],\"name\":\"setCompleted\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/jay/Desktop/Harvard/CSCI E-118/Final/cscie118-final/contracts/Migrations.sol\":\"Migrations\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/jay/Desktop/Harvard/CSCI E-118/Final/cscie118-final/contracts/Migrations.sol\":{\"keccak256\":\"0x439dc4dacccd932f22167c6999e1cf1054eb7a2ff986fba21245590a5c0813e1\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3d420d60c0537d3957192c67d0759c943c97f62afedbdf35861292c89ce23a8c\",\"dweb:/ipfs/QmUQYzkfrKjq5ZDoFCsdvx3BjShAx53HCYkocoutCLrzZ9\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550610185806100606000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c8063445df0ac146100465780638da5cb5b14610064578063fdacd57614610098575b600080fd5b61004e6100c6565b6040518082815260200191505060405180910390f35b61006c6100cc565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6100c4600480360360208110156100ae57600080fd5b81019080803590602001909291905050506100f0565b005b60015481565b60008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141561014c57806001819055505b5056fea26469706673582212201161188f7e09527bf4eac3f995206cc30019400f57bf82debd27edfe48f831c264736f6c63430007060033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c8063445df0ac146100465780638da5cb5b14610064578063fdacd57614610098575b600080fd5b61004e6100c6565b6040518082815260200191505060405180910390f35b61006c6100cc565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6100c4600480360360208110156100ae57600080fd5b81019080803590602001909291905050506100f0565b005b60015481565b60008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141561014c57806001819055505b5056fea26469706673582212201161188f7e09527bf4eac3f995206cc30019400f57bf82debd27edfe48f831c264736f6c63430007060033",
   "immutableReferences": {},
   "generatedSources": [],
   "deployedGeneratedSources": [],
   "sourceMap": "93:311:1:-:0;;;245:50;;;;;;;;;;280:10;272:5;;:18;;;;;;;;;;;;;;;;;;93:311;;;;;;",
   "deployedSourceMap": "93:311:1:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;141:36;;;:::i;:::-;;;;;;;;;;;;;;;;;;;117:20;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;299:103;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;141:36;;;;:::o;117:20::-;;;;;;;;;;;;:::o;299:103::-;228:5;;;;;;;;;;214:19;;:10;:19;;;210:26;;;388:9:::1;361:24;:36;;;;210:26:::0;299:103;:::o",
   "source": "// SPDX-License-Identifier: MIT\n\npragma solidity ^0.7.0;\n//pragma solidity >=0.4.21 <0.7.0;\n\ncontract Migrations {\n  address public owner;\n  uint public last_completed_migration;\n\n  modifier restricted() {\n    if (msg.sender == owner) _;\n  }\n\n  constructor() public {\n    owner = msg.sender;\n  }\n\n  function setCompleted(uint completed) public restricted {\n    last_completed_migration = completed;\n  }\n}\n",
-  "sourcePath": "/Users/jay/Desktop/dev/blockchain/truffle_ui/contracts/Migrations.sol",
+  "sourcePath": "/Users/jay/Desktop/Harvard/CSCI E-118/Final/cscie118-final/contracts/Migrations.sol",
   "ast": {
-    "absolutePath": "/Users/jay/Desktop/dev/blockchain/truffle_ui/contracts/Migrations.sol",
+    "absolutePath": "/Users/jay/Desktop/Harvard/CSCI E-118/Final/cscie118-final/contracts/Migrations.sol",
     "exportedSymbols": {
       "Migrations": [
         379
@@ -454,7 +454,7 @@
   },
   "legacyAST": {
     "attributes": {
-      "absolutePath": "/Users/jay/Desktop/dev/blockchain/truffle_ui/contracts/Migrations.sol",
+      "absolutePath": "/Users/jay/Desktop/Harvard/CSCI E-118/Final/cscie118-final/contracts/Migrations.sol",
       "exportedSymbols": {
         "Migrations": [
           379
@@ -917,15 +917,21 @@
     "version": "0.7.6+commit.7338295f.Emscripten.clang"
   },
   "networks": {
+    "4": {
+      "events": {},
+      "links": {},
+      "address": "0xD37745eF109458dE10CA074EA191B7cc4919b739",
+      "transactionHash": "0x38a8484608e7245e63f421d171b486fd2fcd0050eadc88ed45a07d3860b5d131"
+    },
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x90BF2596C0EEcf50F0A136A28cA0D2095b74fAC6",
-      "transactionHash": "0x6f568f61a020c7da5874b4ad4c616c362084e7596643e2a5e7675d768ce064ca"
+      "address": "0x9bc58bd7A7f1600263402808501fafb050Ba9716",
+      "transactionHash": "0xb70ab991036812b207b4d8ad771d8f4fc13e0d909451be7bcb22fd26f0b4617f"
     }
   },
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-04-07T21:43:20.153Z",
+  "updatedAt": "2021-04-09T03:49:29.846Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

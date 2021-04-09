@@ -9,7 +9,7 @@ contract Diplomas is NTCert {
      mapping(address => mapping(string => certificate)) private diplomas;
      
      modifier onlyOwner {
-         require(owner == msg.sender, "You're not my dad!");
+         require(owner == msg.sender, "You're not my owner");
          _;
      }
      
@@ -49,7 +49,7 @@ contract Diplomas is NTCert {
                 _details,
                 _pofHash
             );
-        emit certVoided(_certId, msg.sender);
+        emit certCreated(_certId, msg.sender);
         return true;
     }
     

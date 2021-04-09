@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button, Container, Form, Alert } from "react-bootstrap";
 
 const _ = require("lodash");

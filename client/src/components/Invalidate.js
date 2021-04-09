@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { Container, Form, Button, Alert } from "react-bootstrap";
+import React, { useState } from "react";
+import { Container, Form, Button, Alert, Spinner } from "react-bootstrap";
 
 const _ = require("lodash");
 
 const Invalidate = (props) => {
   const [diplomaId, setDiplomaId] = useState();
+  const [inProgress, setInProgress] = useState(false);
   const [diplomaData, setDiplomaData] = useState({});
+
   return (
     <Container>
       <Form className="user-select-none">
@@ -19,15 +21,31 @@ const Invalidate = (props) => {
         </Form.Group>
         <Form.Group></Form.Group>
         <Form.Group className="text-center">
-          <Button
-            variant="success"
-            onClick={async () => {
-              const response = await props.invalidate_diploma(diplomaId);
-              setDiplomaData({ voided: response, diplomaId });
-            }}
-          >
-            Invalidate Diploma
-          </Button>
+          {!inProgress && (
+            <Button
+              variant="success"
+              onClick={async () => {
+                setInProgress(true);
+                const response = await props.invalidate_diploma(diplomaId);
+                setInProgress(false);
+                setDiplomaData({ voided: response, diplomaId });
+              }}
+            >
+              Invalidate Diploma
+            </Button>
+          )}
+          {inProgress && (
+            <Button variant="success" disabled>
+              <Spinner
+                as="span"
+                animation="grow"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />{" "}
+              Waiting for confirmation...
+            </Button>
+          )}
         </Form.Group>
       </Form>
       {!_.isEmpty(diplomaData) && diplomaData.voided && (

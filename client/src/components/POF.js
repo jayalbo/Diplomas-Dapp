@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { Container, Form, Button, Alert } from "react-bootstrap";
 import { SHA256 } from "crypto-js";
 
@@ -11,10 +11,6 @@ const POF = (props) => {
   const [fileHash, setFileHash] = useState("");
   const fileFrm = useRef();
 
-  const clearFile = () => {
-    fileFrm.current.value = "";
-    setFileHash("");
-  };
   const handleFileChosen = (file) => {
     if (!file) {
       setFileHash("");

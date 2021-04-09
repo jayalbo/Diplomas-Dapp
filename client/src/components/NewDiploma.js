@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Container, Form, Button, Modal } from "react-bootstrap";
+import { Container, Form, Button, Modal, Spinner } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import { SHA256 } from "crypto-js";
 
@@ -21,7 +21,7 @@ const NewDiploma = (props) => {
   const fileFrm = useRef();
   const resetForm = useRef();
   const diplomaIdFrm = useRef();
-
+  const [inProgress, setInProgress] = useState(false);
   const generateId = () => {
     const uuid = uuidv4();
     setDiplomaId(uuid);
@@ -56,6 +56,7 @@ const NewDiploma = (props) => {
     resetForm.current.click();
   };
   const createDiploma = async () => {
+    setInProgress(true);
     if (
       await props.create_diploma({
         diplomaId,
@@ -72,6 +73,7 @@ const NewDiploma = (props) => {
     } else {
       setMsg("Error creating the diploma, please verify the information");
     }
+    setInProgress(false);
     setShow(true);
   };
 
@@ -185,16 +187,30 @@ const NewDiploma = (props) => {
               value={fileHash}
             />
           )}
-          {fileHash && fileHash != "Calculating hash..." && (
+          {fileHash && fileHash !== "Calculating hash..." && (
             <Button onClick={clearFile} variant="secondary">
               Remove
             </Button>
           )}
         </Form.Group>
         <Form.Group className="text-center">
-          <Button onClick={createDiploma} variant="success">
-            Create Diploma
-          </Button>
+          {!inProgress && (
+            <Button onClick={createDiploma} variant="success">
+              Create Diploma
+            </Button>
+          )}
+          {inProgress && (
+            <Button variant="success" disabled>
+              <Spinner
+                as="span"
+                animation="grow"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />{" "}
+              Waiting for confirmation...
+            </Button>
+          )}
         </Form.Group>
         <Form.Control
           type="reset"
