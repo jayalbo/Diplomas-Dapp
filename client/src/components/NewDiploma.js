@@ -1,10 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Container, Form, Button, Modal, Spinner } from "react-bootstrap";
+import {
+  Container,
+  Form,
+  Button,
+  Modal,
+  Spinner,
+  Alert,
+} from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import { SHA256 } from "crypto-js";
 
 const NewDiploma = (props) => {
   const [show, setShow] = useState(false);
+  const [showTransaction, setShowTransaction] = useState(false);
+
   const [msg, setMsg] = useState();
 
   const handleClose = () => setShow(false);
@@ -43,20 +52,27 @@ const NewDiploma = (props) => {
     };
     fileReader.readAsBinaryString(file);
   };
-  const clearData = () => {
-    setDiplomaId("");
-    setExpirationDate("");
-    setExpInSeconds(0);
-    setTitle("");
-    setInstitution("");
-    setStudent("");
-    setDetails("");
-    setFileHash("");
-    clearFile();
-    resetForm.current.click();
-  };
+
   const createDiploma = async () => {
+    if (
+      !(await props.test_diploma({
+        diplomaId,
+        expInSeconds,
+        title,
+        institution,
+        student,
+        details,
+        fileHash,
+      }))
+    ) {
+      setShowTransaction(false);
+      setMsg("Error creating the diploma, please verify the information");
+      setShow(true);
+      return;
+    }
+
     setInProgress(true);
+
     if (
       await props.create_diploma({
         diplomaId,
@@ -68,14 +84,33 @@ const NewDiploma = (props) => {
         fileHash,
       })
     ) {
-      clearData();
-      setMsg("Diploma created succesfully");
+      setShowTransaction(false);
     } else {
+      setInProgress(false);
+      setShowTransaction(false);
       setMsg("Error creating the diploma, please verify the information");
+      setShow(true);
     }
-    setInProgress(false);
-    setShow(true);
   };
+  useEffect(() => {
+    if (props.transaction_confirmed) {
+      const clearData = () => {
+        setDiplomaId("");
+        setExpirationDate("");
+        setExpInSeconds(0);
+        setTitle("");
+        setInstitution("");
+        setStudent("");
+        setDetails("");
+        setFileHash("");
+        clearFile();
+        resetForm.current.click();
+      };
+	clearData();
+	setInProgress(false);
+      setShowTransaction(true);
+    }
+  }, [props.transaction_confirmed]);
 
   useEffect(() => {
     setMinDate(new Date().toISOString().substring(0, 19));
@@ -93,6 +128,17 @@ const NewDiploma = (props) => {
 
   return (
     <Container>
+      <Alert
+        show={showTransaction}
+        variant="success"
+        onClose={() => setShowTransaction(false)}
+        dismissible
+      >
+        <p>
+          The operation was accepted!!. You will receive a notification once the
+          transaction is confirmed
+        </p>
+      </Alert>
       <Form className="user-select-none">
         <Form.Group>
           <Form.Label>
@@ -219,6 +265,7 @@ const NewDiploma = (props) => {
           style={{ display: "none" }}
         />
       </Form>
+
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>{msg}</Modal.Body>

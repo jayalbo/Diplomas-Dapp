@@ -1,52 +1,67 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Diplomas from "./contracts/Diplomas.json";
 import getWeb3 from "./getWeb3";
-import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import "./App.css";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 import NewContract from "./components/NewDiploma";
 import GetDiploma from "./components/GetDiploma";
 import Validate from "./components/Validate";
 import Invalidate from "./components/Invalidate";
 import POF from "./components/POF";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub, faEthereum } from "@fortawesome/free-brands-svg-icons";
-import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
 const App = () => {
-  //const [web3, setWeb3] = useState();
   const [accounts, setAccounts] = useState();
   const [contract, setContract] = useState();
   const [depNetwork, setDepNetwork] = useState();
+  const [txConfirmed, setTxConfirmed] = useState(false);
 
+  const toastAlert = (message, type) => {
+    toast[type](message);
+  };
   useEffect(() => {
     (async () => {
       try {
-        // Get network provider and web3 instance.
-        const web3 = await getWeb3();
+        const web3 = await getWeb3(); // Get web3 instance.
+        const accounts = await web3.eth.getAccounts(); // Get users accounts
 
-        // Use web3 to get the user's accounts.
-        const accounts = await web3.eth.getAccounts();
+        const networkId = await web3.eth.net.getId(); // Get network Id
+        const networkType = await web3.eth.net.getNetworkType(); // Get Network type (e.g. mainnet,rinkeby, etc )
 
-        // Get the contract instance.
-        const networkId = await web3.eth.net.getId();
-        const networkType = await web3.eth.net.getNetworkType();
-
+        // Contract
         const deployedNetwork = Diplomas.networks[networkId];
         const instance = new web3.eth.Contract(
           Diplomas.abi,
           deployedNetwork && deployedNetwork.address
         );
 
-        // Set web3, accounts, and contract to the state, and then proceed with an
-        // example of interacting with the contract's methods.
-
-        // setWeb3(web3);
         setAccounts(accounts);
         setContract(instance);
         setDepNetwork(networkType);
 
-        //this.setState({ web3, accounts, contract: instance }, this.runExample);
+        // Detect change of account on wallet (Metamask)
+        window.ethereum.on("accountsChanged", async () => {
+          // Set new account
+          setAccounts(await web3.eth.getAccounts());
+        });
+        window.ethereum.on("chainChanged", async () => {
+          // Set contract deployment & account on network change
+          const deployedNetwork = Diplomas.networks[await web3.eth.net.getId()];
+
+          setAccounts(await web3.eth.getAccounts());
+          setContract(
+            new web3.eth.Contract(
+              Diplomas.abi,
+              deployedNetwork && deployedNetwork.address
+            )
+          );
+          setDepNetwork(await web3.eth.net.getNetworkType());
+        });
       } catch (error) {
         // Catch any errors for any of the above operations.
         alert(
@@ -56,6 +71,36 @@ const App = () => {
       }
     })();
   }, []);
+  const testCreateDiplomaAction = async (diplomaData) => {
+    setTxConfirmed(false);
+    // Verify the operation is valid call()
+    const {
+      diplomaId,
+      expInSeconds,
+      title,
+      institution,
+      student,
+      details,
+      fileHash,
+    } = diplomaData;
+    try {
+      await contract.methods
+        .createCert(
+          diplomaId,
+          expInSeconds,
+          title,
+          institution,
+          student,
+          details,
+          fileHash
+        )
+        .call({ from: accounts[0] });
+      return true;
+    } catch (error) {
+      return false;
+    }
+  };
+
   const createDiplomaAction = async (diplomaData) => {
     let response;
     try {
@@ -79,7 +124,31 @@ const App = () => {
           details,
           fileHash
         )
-        .send({ from: accounts[0] });
+        .send({ from: accounts[0] })
+        .on("transactionHash", async (txhash) => {
+          setTxConfirmed(txhash ? true : false);
+        });
+      console.log(response);
+      toastAlert(
+        <div>
+          {`The transaction ...${response.transactionHash.slice(
+            -5
+          )} was confirmed! 🎉 `}
+          {depNetwork !== "private" && (
+            <>
+              {`\n View on `}
+              <a
+                href={`https://${
+                  depNetwork !== "main" ? `${depNetwork}.` : ""
+                }etherscan.io/tx/${response.transactionHash}`}
+              >
+                {"Etherscan"}
+              </a>
+            </>
+          )}
+        </div>,
+        "success"
+      );
     } catch (error) {
       response = false;
     } finally {
@@ -121,13 +190,28 @@ const App = () => {
       return response;
     }
   };
-
+  const invalidateDiplomaActionTest = async (certId) => {
+    setTxConfirmed(false);
+    let response;
+    try {
+      response = await contract.methods
+        .voidCert(certId)
+        .call({ from: accounts[0] });
+    } catch (error) {
+      response = false;
+    } finally {
+      return response;
+    }
+  };
   const invalidateDiplomaAction = async (certId) => {
     let response;
     try {
       response = await contract.methods
         .voidCert(certId)
-        .send({ from: accounts[0] });
+        .send({ from: accounts[0] })
+        .on("transactionHash", async (txhash) => {
+          setTxConfirmed(txhash ? true : false);
+        });
     } catch (error) {
       response = false;
     } finally {
@@ -136,56 +220,7 @@ const App = () => {
   };
   return (
     <Router>
-      <Navbar
-        collapseOnSelect
-        expand="lg"
-        bg="dark"
-        variant="dark"
-        className="mb-3"
-      >
-        <Navbar.Brand>
-          <FontAwesomeIcon className="mr-2" icon={faGraduationCap} />
-          Diplomas DApp
-        </Navbar.Brand>
-        <Navbar.Toggle />
-        <Navbar.Collapse className="justify-content-end">
-          <Nav className="mr-auto">
-            <NavDropdown title="Actions" id="collasible-nav-dropdown">
-              <NavDropdown.Item>
-                <Link to="/" className="header_links_menu">
-                  Create Diploma
-                </Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <Link to="/get_diploma" className="header_links_menu">
-                  Get Diploma
-                </Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <Link to="/invalidate_diploma" className="header_links_menu">
-                  Invalidate Diploma
-                </Link>
-              </NavDropdown.Item>
-            </NavDropdown>
-
-            <NavDropdown title="Validations" id="collasible-nav-dropdown">
-              <NavDropdown.Item>
-                <Link to="/validate" className="header_links_menu">
-                  Validate Diploma
-                </Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <Link to="/pof" className="header_links_menu">
-                  Proof of existence
-                </Link>
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-          <Navbar.Text>
-            Signed in as: <span className="text-white">{accounts}</span>
-          </Navbar.Text>
-        </Navbar.Collapse>
-      </Navbar>
+      <Header accounts={accounts} />
       <Container className="mb-5">
         <Switch>
           <Route path="/get_diploma">
@@ -198,65 +233,34 @@ const App = () => {
             <POF proof_of_existence={pofAction} />
           </Route>
           <Route path="/invalidate_diploma">
-            <Invalidate invalidate_diploma={invalidateDiplomaAction} />
+            <Invalidate
+              transaction_confirmed={txConfirmed}
+              invalidate_diploma={invalidateDiplomaAction}
+              invalidate_diploma_test={invalidateDiplomaActionTest}
+            />
           </Route>
           <Route path="/">
-            <NewContract create_diploma={createDiplomaAction} />
+            <NewContract
+              create_diploma={createDiplomaAction}
+              test_diploma={testCreateDiplomaAction}
+              transaction_confirmed={txConfirmed}
+            />
           </Route>
         </Switch>
       </Container>
-      <Navbar fixed="bottom" className="bottom-bar bg-secondary">
-        <FontAwesomeIcon className="mr-1" icon={faEthereum} /> Connected to
-        network <strong className="ml-2">{depNetwork}</strong> <Navbar.Toggle />
-        <Navbar.Collapse className="justify-content-end">
-          <a href="https://github.com/jayalbo">
-            <FontAwesomeIcon className="ml-2 icon_bar" icon={faGithub} />
-          </a>
-        </Navbar.Collapse>
-      </Navbar>
+      <Footer depNetwork={depNetwork} />
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </Router>
   );
 };
-
-// class App extends Component {
-//   state = { storageValue: 0, web3: null, accounts: null, contract: null };
-
-//   componentDidMount = async () => {
-//   };
-
-//   runExample = async () => {
-//     const { accounts, contract } = this.state;
-
-//     // Stores a given value, 5 by default.
-//     await contract.methods.set(5).send({ from: accounts[0] });
-
-//     // Get the value from the contract to prove it worked.
-//     const response = await contract.methods.get().call();
-
-//     // Update state with the result.
-//     this.setState({ storageValue: response });
-//   };
-
-//   render() {
-//     if (!this.state.web3) {
-//       return <div>Loading Web3, accounts, and contract...</div>;
-//     }
-//     return (
-//       <div className="App">
-//         <h1>Good to Go!!!!</h1>
-//         <p>Your Truffle Box is installed and ready.</p>
-//         <h2>Smart Contract Example</h2>
-//         <p>
-//           If your contracts compiled and migrated successfully, below will show
-//           a stored value of 5 (by default).
-//         </p>
-//         <p>
-//           Try changing the value stored on <strong>line 40</strong> of App.js.
-//         </p>
-//         <div>The stored value is: {this.state.storageValue}</div>
-//       </div>
-//     );
-//   }
-// }
-
 export default App;
