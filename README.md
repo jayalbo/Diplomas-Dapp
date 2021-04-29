@@ -1,10 +1,12 @@
-## CSCI-E118 Final Project
-
-Contract Address (rinkeby) 0x26DE54fc152e7e5c24c939714C686709b342984d
-
-## Final Project CSCI E-118 - Demonstration Portion
+## Final Project CSCI E-118 (HES) - Demonstration Portion
 
 ### Jay Albo
+
+---
+
+Live Demo (Rinkeby): https://diplomasdapp.jayalbo.dev/
+
+Contract Address (Rinkeby) 0x26DE54fc152e7e5c24c939714C686709b342984d (https://rinkeby.etherscan.io/address/0x26DE54fc152e7e5c24c939714C686709b342984d)
 
 ---
 
@@ -44,7 +46,7 @@ In order to run this application, please follow these steps:
    - SEED_PHRASE= -Your seed phrase-
    - Run **$ truffle migrate --network rinkeby**
 6. Deploy to local Ganache
-   - Open Ganache GUI
+   - Open Ganache
    - Create a new Workspace
    - From "Contracts" click "LINK TRUFFLE PROJECTS"
    - Click Add Project and select "truffle-config.js" from the project root directory
