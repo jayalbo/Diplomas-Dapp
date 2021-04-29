@@ -27,9 +27,11 @@ https://github.com/trufflesuite/truffle
 
 https://github.com/trufflesuite/ganache
 
-- Instalation:
+**Installation**
 
-  https://github.com/trufflesuite/ganache/releases
+https://github.com/trufflesuite/ganache/releases
+
+---
 
 ### Instructions
 
