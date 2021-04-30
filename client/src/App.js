@@ -133,7 +133,6 @@ const App = () => {
         .on("transactionHash", async (txhash) => {
           setTxConfirmed(txhash ? true : false);
         });
-      console.log(response);
       toastAlert(
         <div>
           {`The transaction ...${response.transactionHash.slice(
@@ -146,6 +145,7 @@ const App = () => {
                 href={`https://${
                   depNetwork !== "main" ? `${depNetwork}.` : ""
                 }etherscan.io/tx/${response.transactionHash}`}
+                target="_blank"
               >
                 {"Etherscan"}
               </a>
@@ -219,6 +219,27 @@ const App = () => {
         .on("transactionHash", async (txhash) => {
           setTxConfirmed(txhash ? true : false);
         });
+      toastAlert(
+        <div>
+          {`The transaction ...${response.transactionHash.slice(
+            -5
+          )} was confirmed! 🎉 `}
+          {depNetwork !== "private" && (
+            <>
+              {`\n View on `}
+              <a
+                href={`https://${
+                  depNetwork !== "main" ? `${depNetwork}.` : ""
+                }etherscan.io/tx/${response.transactionHash}`}
+                target="_blank"
+              >
+                {"Etherscan"}
+              </a>
+            </>
+          )}
+        </div>,
+        "success"
+      );
     } catch (error) {
       response = false;
     } finally {

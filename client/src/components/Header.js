@@ -1,8 +1,10 @@
 import React from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import ReactTooltip from "react-tooltip";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
+import { faGraduationCap, faCopy } from "@fortawesome/free-solid-svg-icons";
 
 const Header = (props) => {
   return (
@@ -51,9 +53,13 @@ const Header = (props) => {
             </NavDropdown.Item>
           </NavDropdown>
         </Nav>
-        <Navbar.Text>
-          Signed in as: <span className="text-white">{props.accounts}</span>
-        </Navbar.Text>
+        <CopyToClipboard text={props.accounts}>
+          <Navbar.Text data-tip="Click to copy">
+            Signed in as: <span className="text-white">{props.accounts}</span>{" "}
+            <FontAwesomeIcon className="mr-2" icon={faCopy} />
+            <ReactTooltip />
+          </Navbar.Text>
+        </CopyToClipboard>
       </Navbar.Collapse>
     </Navbar>
   );
