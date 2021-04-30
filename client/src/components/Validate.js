@@ -1,12 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Container, Form, Button, Alert } from "react-bootstrap";
+import { useParams } from "react-router";
 
 const _ = require("lodash");
 
 const Validate = (props) => {
+  const { dId } = useParams();
   const [diplomaId, setDiplomaId] = useState();
   const [institution, setInstitution] = useState();
   const [diplomaData, setDiplomaData] = useState({});
+  const diplomaIdFrm = useRef();
+  const institutionIdFrm = useRef();
+  const btnSubmit = useRef();
+
+  useEffect(() => {
+    if (dId && props.contract) {
+      const dipId = dId.split("@")[0];
+      const instId = dId.split("@")[1];
+
+      setDiplomaId(dipId);
+      setInstitution(instId);
+      diplomaIdFrm.current.value = dipId;
+      institutionIdFrm.current.value = instId;
+      (async () => {
+        const response = await props.validate_diploma(dipId, instId);
+
+        setDiplomaData({
+          isValid: response,
+          diplomaId: dipId,
+          institution: instId,
+        });
+      })();
+    }
+  }, [dId, props.contract]);
 
   return (
     <Container>
@@ -17,6 +43,7 @@ const Validate = (props) => {
             onChange={(e) => setDiplomaId(e.target.value)}
             type="text"
             placeholder="Enter id of the diploma"
+            ref={diplomaIdFrm}
           />
         </Form.Group>
         <Form.Group>
@@ -25,6 +52,7 @@ const Validate = (props) => {
             onChange={(e) => setInstitution(e.target.value)}
             type="text"
             placeholder="e.g. 0xb794f5ea0ba39494ce839613fffba74279579268"
+            ref={institutionIdFrm}
           />
         </Form.Group>
         <Form.Group className="text-center">
@@ -38,6 +66,7 @@ const Validate = (props) => {
               );
               setDiplomaData({ isValid: response, diplomaId, institution });
             }}
+            ref={btnSubmit}
           >
             Validate Diploma
           </Button>

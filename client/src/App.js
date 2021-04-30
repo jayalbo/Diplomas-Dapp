@@ -168,8 +168,10 @@ const App = () => {
   };
   const validateDiplomaAction = async (certId, certAuth) => {
     let response;
+
     try {
       response = await contract.methods.certValid(certId, certAuth).call();
+
       return response;
     } catch (error) {
       response = false;
@@ -226,6 +228,12 @@ const App = () => {
           <Route path="/get_diploma">
             <GetDiploma get_diploma={getDiplomaAction} />
           </Route>
+          <Route path="/validate/:dId">
+            <Validate
+              validate_diploma={validateDiplomaAction}
+              contract={contract}
+            />
+          </Route>
           <Route path="/validate">
             <Validate validate_diploma={validateDiplomaAction} />
           </Route>
@@ -239,6 +247,7 @@ const App = () => {
               invalidate_diploma_test={invalidateDiplomaActionTest}
             />
           </Route>
+
           <Route path="/">
             <NewContract
               create_diploma={createDiplomaAction}
