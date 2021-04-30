@@ -44,24 +44,29 @@ const App = () => {
         setContract(instance);
         setDepNetwork(networkType);
 
-        // Detect change of account on wallet (Metamask)
-        window.ethereum.on("accountsChanged", async () => {
-          // Set new account
-          setAccounts(await web3.eth.getAccounts());
-        });
-        window.ethereum.on("chainChanged", async () => {
-          // Set contract deployment & account on network change
-          const deployedNetwork = Diplomas.networks[await web3.eth.net.getId()];
+        try {
+          // Detect change of account on wallet (Metamask)
+          window.ethereum.on("accountsChanged", async () => {
+            // Set new account
+            setAccounts(await web3.eth.getAccounts());
+          });
+          window.ethereum.on("chainChanged", async () => {
+            // Set contract deployment & account on network change
+            const deployedNetwork =
+              Diplomas.networks[await web3.eth.net.getId()];
 
-          setAccounts(await web3.eth.getAccounts());
-          setContract(
-            new web3.eth.Contract(
-              Diplomas.abi,
-              deployedNetwork && deployedNetwork.address
-            )
-          );
-          setDepNetwork(await web3.eth.net.getNetworkType());
-        });
+            setAccounts(await web3.eth.getAccounts());
+            setContract(
+              new web3.eth.Contract(
+                Diplomas.abi,
+                deployedNetwork && deployedNetwork.address
+              )
+            );
+            setDepNetwork(await web3.eth.net.getNetworkType());
+          });
+        } catch (error) {
+          console.log("Auto-detect network change not supported");
+        }
       } catch (error) {
         // Catch any errors for any of the above operations.
         alert(
