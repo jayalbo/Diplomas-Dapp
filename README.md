@@ -54,5 +54,5 @@ In order to run this application, please follow these steps:
    - Click Add Project and select "truffle-config.js" from the project root directory
    - Click Save and Restart
 7. From the terminal run **$ truffle migrate**
-8. From the project root navigate to /client and run **$ npm install** and **$ npm run start ** or **react-scripts start**
+8. From the project root navigate to /client and run **$ npm install** and **$ npm run start** or **react-scripts start**
 9. **OPTIONAL** - "Build" - To build the project in order to deploy it to an external server run the following command **$ npm run build** or **react-scripts build**
