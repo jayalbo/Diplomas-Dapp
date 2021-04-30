@@ -11,9 +11,10 @@ const Footer = (props) => {
       network <strong className="ml-2">{props.depNetwork}</strong>{" "}
       <Navbar.Toggle />
       <Navbar.Collapse className="justify-content-end">
-        <a href="https://github.com/jayalbo">
+        HES - CSCI E-118 - Final Project - Jay Albo
+        {/* <a href="https://github.com/jayalbo">
           <FontAwesomeIcon className="ml-2 icon_bar" icon={faGithub} />
-        </a>
+        </a> */}
       </Navbar.Collapse>
     </Navbar>
   );
