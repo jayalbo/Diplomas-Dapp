@@ -39,7 +39,7 @@ In order to run this application, please follow these steps:
 
 1. Install the dependencies (Truffle and Ganache).
 2. Clone the repository:
-   - $ git clone git@github.com:jayalbo/cscie118-final.git
+   - $ git clone git@github.com:jayalbo/Diplomas-Dapp.git
 3. Within the project directory, run **$ npm install** to resolve its dependencies.
 4. Compile the contracts from the terminal running the following command
    - $ truffle compile
