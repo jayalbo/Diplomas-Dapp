@@ -1,4 +1,4 @@
-## Final Project CSCI E-118 (HES) - Demonstration Portion
+## Diplomas Dapp
 
 ### Jay Albo
 
